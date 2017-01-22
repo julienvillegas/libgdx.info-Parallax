@@ -4,12 +4,12 @@ package com.mygdx.game.Actors;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Array;
 
 /** Created by julienvillegas on 20/01/2017. */
 
-public class ParallaxBackground extends Group {
+public class ParallaxBackground extends Actor {
 
 	private int scroll;
 	private Array<Texture> layers;
@@ -43,6 +43,8 @@ public class ParallaxBackground extends Group {
 
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
+		batch.setColor(getColor().r, getColor().g, getColor().b, getColor().a * parentAlpha);
+
 		scroll+=speed;
 		for(int i = 0;i<layers.size;i++) {
 			srcX = scroll + i*this.LAYER_SPEED_DIFFERENCE *scroll;
